@@ -11,4 +11,6 @@ int Projekt_main() {
     Main_Menu::show_MainMenu();
     std::cin.ignore(1);
     std::cin.get();
+
+
 }
