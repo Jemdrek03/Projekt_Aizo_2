@@ -1,0 +1,8 @@
+//
+// Created by Jędrzej Radłowski on 18/05/2024.
+//
+
+#ifndef PROJEKT_AIZO_2_ALGORYTHMS_MENU_H
+#define PROJEKT_AIZO_2_ALGORYTHMS_MENU_H
+
+#endif //PROJEKT_AIZO_2_ALGORYTHMS_MENU_H
