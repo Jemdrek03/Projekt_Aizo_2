@@ -32,6 +32,23 @@ public:
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << "Wprowadz ponownie: ";
             }
+            switch(zrodloDanych)
+            {
+                case 1:
+
+
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+            }
 
 
         }

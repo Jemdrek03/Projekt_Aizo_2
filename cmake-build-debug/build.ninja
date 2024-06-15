@@ -49,8 +49,8 @@ cmake_ninja_workdir = /Users/jedrek/CLionProjects/Projekt_Aizo_2/cmake-build-deb
 
 build cmake_object_order_depends_target_Projekt_Aizo_2: phony || CMakeFiles/Projekt_Aizo_2.dir
 
-build CMakeFiles/Projekt_Aizo_2.dir/main.cpp.o: CXX_COMPILER__Projekt_Aizo_2_unscanned_Debug /Users/jedrek/CLionProjects/Projekt_Aizo_2/main.cpp || cmake_object_order_depends_target_Projekt_Aizo_2
-  DEP_FILE = CMakeFiles/Projekt_Aizo_2.dir/main.cpp.o.d
+build CMakeFiles/Projekt_Aizo_2.dir/Projekt_main.cpp.o: CXX_COMPILER__Projekt_Aizo_2_unscanned_Debug /Users/jedrek/CLionProjects/Projekt_Aizo_2/Projekt_main.cpp || cmake_object_order_depends_target_Projekt_Aizo_2
+  DEP_FILE = CMakeFiles/Projekt_Aizo_2.dir/Projekt_main.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/Projekt_Aizo_2.dir
   OBJECT_FILE_DIR = CMakeFiles/Projekt_Aizo_2.dir
@@ -63,7 +63,7 @@ build CMakeFiles/Projekt_Aizo_2.dir/main.cpp.o: CXX_COMPILER__Projekt_Aizo_2_uns
 #############################################
 # Link the executable Projekt_Aizo_2
 
-build Projekt_Aizo_2: CXX_EXECUTABLE_LINKER__Projekt_Aizo_2_Debug CMakeFiles/Projekt_Aizo_2.dir/main.cpp.o
+build Projekt_Aizo_2: CXX_EXECUTABLE_LINKER__Projekt_Aizo_2_Debug CMakeFiles/Projekt_Aizo_2.dir/Projekt_main.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   OBJECT_DIR = CMakeFiles/Projekt_Aizo_2.dir
   POST_BUILD = :

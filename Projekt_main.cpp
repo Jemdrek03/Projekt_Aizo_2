@@ -13,5 +13,5 @@ int Projekt_main() {
     std::cin.get();
 
 
-    
+
 }

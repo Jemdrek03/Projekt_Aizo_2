@@ -9,4 +9,6 @@ add_executable(Projekt_Aizo_2 Projekt_main.cpp
         Generate.h
         File_Reading.h
         Main_Menu.h
-        "Algorythms_Menu .h")
+        "Algorythms_Menu .h"
+        MST_Menu.h
+        Shortest_Path_Menu.h)
