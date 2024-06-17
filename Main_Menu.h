@@ -7,6 +7,12 @@
 
 #include <fstream>
 #include <iostream>
+#include <limits>
+#include "File_Reading.h"
+#include "Generate.h"
+#include "Algorythms_Menu.h"
+
+
 
 class Main_Menu{
 
@@ -14,43 +20,50 @@ public:
     static void show_MainMenu()
     {
         int rodzajDanych = -1;
-        std::string nazwaPliku;
-        int TMP;
+        int vertexes = 0, density = 0;
+        std::string fileName;
 
-        while(rodzajDanych != TMP )
+        while(rodzajDanych != 4)
         {
 
             //Mozliwosc wyboru opcji poczatkowych
-            int zrodloDanych = -1;
             std::cout << "1. Wczytaj dane z pliku" << std::endl;
             std::cout << "2. Wygeneruj dane losowo" << std::endl;
-            std::cout << "3. Wyswietl graf listowo i macierzowo" << std::endl;
+            std::cout << "3. Testowanie" << std::endl;
+            std::cout << "4. Zakoncz program" << std::endl;
             std::cout << "Wybierz rodzaj danych: ";
             //Obsluga blednego wyboru opcji poczatkowych
-            while (!(std::cin >> rodzajDanych) || rodzajDanych < 1 || rodzajDanych > 3) {
+            while (!(std::cin >> rodzajDanych) || rodzajDanych < 1 || rodzajDanych > 4) {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << "Wprowadz ponownie: ";
             }
-            switch(zrodloDanych)
-            {
+            Dane result;
+            switch(rodzajDanych){
                 case 1:
-
-
-
+                    std::cout<<"Podaj nazwe pliku: ";
+                    std::cin >> fileName;
+                    result = readData(fileName);
                     break;
 
                 case 2:
-
+                    std::cout<<"Podaj ilosc wierzcholkow grafu: ";
+                    std::cin>>vertexes;
+                    std::cout<<"Podaj gestosc grafu: ";
+                    std::cin>>density;
+                    result = generateData(vertexes, density);
                     break;
 
                 case 3:
-
+                    //testowanie
+                    break;
+                case 4:
                     break;
 
             }
+            if(rodzajDanych == 4) break;
 
-
+            Algorythms_Menu::show_Algorythm_Menu(result);
         }
 
 

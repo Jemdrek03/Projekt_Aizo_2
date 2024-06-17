@@ -6,27 +6,32 @@
 #define PROJEKT_AIZO_2_SHORTEST_PATH_MENU_H
 
 #include <iostream>
+#include <limits>
+#include "Incidence_Matrix.h"
+#include "Adjacency_List.h"
+
+
 
 class Shortest_Path_Menu{
 
 public:
-        static void show_Menu_Short()
+        static void show_Menu_Short(const Adjacency_List& al, const Incidence_Matrix& im)
         {
 
-            int ktory = -1;
+            int which = -1;
 
-            while( ktory != 3 ) {
+            while( which != 3 ) {
                 std::cout << "1. Algorytm Dijkstry " << std::endl;
                 std::cout << "2. Algorytm Forda-Bellmana " << std::endl;
-                std::cout << "3. Powrot do wyboru typu algorytm " << std::endl;
+                std::cout << "3. Powrot " << std::endl;
 
-                while (!(std::cin >> ktory) || ktory < 1 || ktory > 3) {
+                while (!(std::cin >> which) || which < 1 || which > 3) {
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     std::cout << "Wprowadz ponownie: ";
                 }
-                if (ktory == 3) break;
-                switch (ktory) {
+                if (which == 3) break;
+                switch (which) {
                     case 1:
 
 
