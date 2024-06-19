@@ -11,7 +11,7 @@
 #include "File_Reading.h"
 #include "Generate.h"
 #include "Algorythms_Menu.h"
-
+#include "Testing.h"
 
 
 class Main_Menu{
@@ -20,7 +20,8 @@ public:
     static void show_MainMenu()
     {
         int rodzajDanych = -1;
-        int vertexes = 0, density = 0;
+        int vertexes = 0;
+        float density;
         std::string fileName;
 
         while(rodzajDanych != 4)
@@ -55,13 +56,13 @@ public:
                     break;
 
                 case 3:
-                    //testowanie
+                    Testing::start_Testing();
                     break;
                 case 4:
                     break;
 
             }
-            if(rodzajDanych == 4) break;
+            if(rodzajDanych == 4 || rodzajDanych == 3) break;
 
             Algorythms_Menu::show_Algorythm_Menu(result);
         }

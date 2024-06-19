@@ -35,13 +35,15 @@ public:
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << "Wprowadz ponownie: ";
             }
-            if (ktory == 4) break;
             Incidence_Matrix im = toIncidenceMatrix(result);
+            Incidence_Matrix im1 = toIncidenceMatrix1(result);
             Adjacency_List al = toAdjacencyList(result);
-
+            Adjacency_List al1 = toAdjacencyList1(result);
+            if (ktory == 4)
+                break;
             switch (ktory) {
                 case 1:
-                    MST_Menu::show_Menu_MST(al, im);
+                    MST_Menu::show_Menu_MST(al1, im1);
                     break;
                 case 2:
                     Shortest_Path_Menu::show_Menu_Short(al, im);

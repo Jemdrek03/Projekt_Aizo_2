@@ -7,7 +7,10 @@
 
 
 #include <iostream>
+#include <iomanip>
 #include "Main_Menu.h"
+#include "Shorthest_Path_Algorythms.h"
+#include "MST_Algorythms.h"
 
 class Show_Graph{
 public:
@@ -18,7 +21,7 @@ public:
         std::cout<<"Liczba wierzcholkow: "<<graph.vertexes<<std::endl;
         for(int i = 0; i < graph.edges; i++)
         {
-            std::cout<<"Z krawedzi "<<graph.first[i]<<" do krawedzi"<<graph.second[i]<<" o wadze"<<graph.third[i]<<std::endl;
+            std::cout<<"Z krawedzi "<<graph.first[i]<<" do krawedzi "<<graph.second[i]<<" o wadze "<<graph.third[i]<<std::endl;
         }
     }
 
@@ -34,14 +37,55 @@ public:
         }
     }
 
-    static void show_Graph_3(const Incidence_Matrix& im)
-    {
+    static void show_Graph_3(const Incidence_Matrix& im) {
+        std::cout << "  "; // Space for row headers
+        for (int j = 0; j < im.edges; ++j) {
+            std::cout << "E" << j << " ";
+        }
+        std::cout << std::endl;
+
         for (int i = 0; i < im.vertexes; ++i) {
+            std::cout << "V" << i << " "; // Row headers
             for (int j = 0; j < im.edges; ++j) {
-                std::cout << im.matrix[i][j] << " ";
+                if (im.matrix[i][j] > 1) {
+                    std::cout << std::setw(2) << 1 << " ";
+                } else {
+                    std::cout << std::setw(2) << im.matrix[i][j] << " ";
+                }
             }
             std::cout << std::endl;
         }
+    }
+
+    static void show_Graph_Path(const std::vector<int>& path)
+    {
+        for( int v : path)
+        {
+            std::cout<<v<<" -> ";
+        }
+        std::cout<<"null"<<std::endl;
+    }
+
+    static void show_MST(const prim& result)
+    {
+        int totalWeight = 0;
+        std::cout << "MST Edges:\n";
+        for (int i = 1; i < result.vertexes; ++i) {
+            std::cout << "Edge from vertex " << result.parent[i] << " to vertex " << i << " with weight " << result.key[i] << "\n";
+            totalWeight += result.key[i];
+        }
+        std::cout << "Total cost of MST: " << totalWeight << "\n";
+    }
+
+    static void show_MST(const kruskal& result)
+    {
+        int totalWeight = 0;
+        std::cout << "MST Edges:\n";
+        for (const auto& edge : result.mst) {
+            std::cout << "Edge from vertex " << edge.u << " to vertex " << edge.v << " with weight " << edge.weight << "\n";
+            totalWeight += edge.weight;
+        }
+        std::cout << "Total cost of MST: " << totalWeight << "\n";
     }
 
 };

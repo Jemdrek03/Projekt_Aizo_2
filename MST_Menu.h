@@ -10,6 +10,8 @@
 #include <limits>
 #include "Incidence_Matrix.h"
 #include "Adjacency_List.h"
+#include "Show_Graph.h"
+#include "MST_Algorythms.h"
 
 class MST_Menu{
 
@@ -32,11 +34,18 @@ public:
             if (ktory == 3) break;
             switch (ktory) {
                 case 1:
-
-
+                    std::cout<<"Dla listy sasiedztwa: ";
+                    Show_Graph::show_MST(MST_Algorythms::primAdjacencyList(al));
+                    std::cout<<std::endl<<"Dlat macierzy incydencji: ";
+                    Show_Graph::show_MST(MST_Algorythms::primIncidenceMatrix(im));
+                    std::cout<<std::endl;
                     break;
                 case 2:
-
+                    std::cout<<"Dla listy sasiedztwa: ";
+                    Show_Graph::show_MST(MST_Algorythms::kruskalAdjacencyList(al));
+                    std::cout<<std::endl<<"Dlat macierzy incydencji: ";
+                    Show_Graph::show_MST(MST_Algorythms::kruskalIncidenceMatrix(im));
+                    std::cout<<std::endl;
                     break;
                 case 3:
 

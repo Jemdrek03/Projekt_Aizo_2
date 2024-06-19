@@ -24,12 +24,27 @@ Incidence_Matrix toIncidenceMatrix(const Dane& graph) {
     for (int i = 0; i < graph.edges; ++i) {
         int u = graph.first[i];
         int v = graph.second[i];
-        im.matrix[u][i] = 1;
+        im.matrix[u][i] = graph.third[i];
         im.matrix[v][i] = -1; // For directed graph. Use 1 for undirected graph.
     }
 
     return im;
 }
+
+Incidence_Matrix toIncidenceMatrix1(const Dane& graph) {
+    Incidence_Matrix im(graph.vertexes, graph.edges);
+
+    for (int i = 0; i < graph.edges; ++i) {
+        int u = graph.first[i];
+        int v = graph.second[i];
+        im.matrix[u][i] = graph.third[i];
+        im.matrix[v][i] = -graph.third[i];
+    }
+
+    return im;
+}
+
+
 
 
 
