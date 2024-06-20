@@ -14,10 +14,11 @@
 #include "Adjacency_List.h"
 #include "Incidence_Matrix.h"
 
+
 class Shortest_Path_Algorythms {
 public:
     // Dijkstra dla listy sąsiedztwa
-    static std::vector<int> dijkstraAdjacencyList(const Adjacency_List& graph, int start, int end) {
+    static std::pair<std::vector<int>, int> dijkstraAdjacencyList(const Adjacency_List& graph, int start, int end) {
         std::vector<int> distances(graph.vertexes, std::numeric_limits<int>::max());
         std::vector<int> previous(graph.vertexes, -1);
         distances[start] = 0;
@@ -42,11 +43,11 @@ public:
             }
         }
 
-        return reconstructPath(previous, start, end);
+        return reconstructPath(previous, distances[end], start, end);
     }
 
     // Dijkstra dla macierzy incydencji
-    static std::vector<int> dijkstraIncidenceMatrix(const Incidence_Matrix& graph, int start, int end) {
+    static std::pair<std::vector<int>, int> dijkstraIncidenceMatrix(const Incidence_Matrix& graph, int start, int end) {
         std::vector<int> distances(graph.vertexes, std::numeric_limits<int>::max());
         std::vector<int> previous(graph.vertexes, -1);
         distances[start] = 0;
@@ -79,11 +80,11 @@ public:
             }
         }
 
-        return reconstructPath(previous, start, end);
+        return reconstructPath(previous, distances[end], start, end);
     }
 
     // Ford-Bellman dla listy sąsiedztwa
-    static std::vector<int> bellmanFordAdjacencyList(const Adjacency_List& graph, int start, int end) {
+    static std::pair<std::vector<int>, int> bellmanFordAdjacencyList(const Adjacency_List& graph, int start, int end) {
         std::vector<int> distances(graph.vertexes, std::numeric_limits<int>::max());
         std::vector<int> previous(graph.vertexes, -1);
         distances[start] = 0;
@@ -99,11 +100,11 @@ public:
             }
         }
 
-        return reconstructPath(previous, start, end);
+        return reconstructPath(previous, distances[end], start, end);
     }
 
     // Ford-Bellman dla macierzy incydencji
-    static std::vector<int> bellmanFordIncidenceMatrix(const Incidence_Matrix& graph, int start, int end) {
+    static std::pair<std::vector<int>, int> bellmanFordIncidenceMatrix(const Incidence_Matrix& graph, int start, int end) {
         std::vector<int> distances(graph.vertexes, std::numeric_limits<int>::max());
         std::vector<int> previous(graph.vertexes, -1);
         distances[start] = 0;
@@ -124,15 +125,12 @@ public:
             }
         }
 
-        return reconstructPath(previous, start, end);
+        return reconstructPath(previous, distances[end], start, end);
     }
-
-
-
 
 private:
     // Rekonstrukcja najkrótszej ścieżki
-    static std::vector<int> reconstructPath(const std::vector<int>& previous, int start, int end) {
+    static std::pair<std::vector<int>, int> reconstructPath(const std::vector<int>& previous, int totalWeight, int start, int end) {
         std::vector<int> path;
         for (int at = end; at != -1; at = previous[at]) {
             path.push_back(at);
@@ -140,14 +138,11 @@ private:
         std::reverse(path.begin(), path.end());
 
         if (path.size() > 1 && path[0] == start) {
-            return path;
+            return {path, totalWeight};
         }
 
-        return {}; // Brak ścieżki
+        return {{}, std::numeric_limits<int>::max()}; // Brak ścieżki
     }
 };
-
-
-
 
 #endif //PROJEKT_AIZO_2_SHORTHEST_PATH_ALGORYTHMS_H

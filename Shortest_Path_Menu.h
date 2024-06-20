@@ -21,6 +21,7 @@ public:
             int which = -1;
             int beggining = 0, end = 0;
 
+            // Wybor algorytmu najkrotszej sciezki
             while( which != 3 ) {
                 std::cout << "1. Algorytm Dijkstry " << std::endl;
                 std::cout << "2. Algorytm Forda-Bellmana " << std::endl;

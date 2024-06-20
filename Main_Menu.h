@@ -64,6 +64,7 @@ public:
             }
             if(rodzajDanych == 4 || rodzajDanych == 3) break;
 
+            // Wyswietlenie nastepnego menu
             Algorythms_Menu::show_Algorythm_Menu(result);
         }
 

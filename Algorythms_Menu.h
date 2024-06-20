@@ -24,6 +24,7 @@ public:
 
         int ktory = -1;
 
+        // opcje wyboru algorytmu
         while( ktory != 4 ) {
             std::cout << "1. Algorytm MST " << std::endl;
             std::cout << "2. Algorytm najkrotszej sciezki " << std::endl;
@@ -35,6 +36,8 @@ public:
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << "Wprowadz ponownie: ";
             }
+
+            //Zamiana dotychczasowej struktury grafu na te potrzebne w dalszej czesci programu
             Incidence_Matrix im = toIncidenceMatrix(result);
             Incidence_Matrix im1 = toIncidenceMatrix1(result);
             Adjacency_List al = toAdjacencyList(result);

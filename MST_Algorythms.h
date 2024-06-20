@@ -26,12 +26,14 @@ struct Edge {
     }
 };
 
+//Struktura prim
 struct prim {
     std::vector<int> parent;
     std::vector<int> key;
     int vertexes;
 };
 
+//Struktura kruskal
 struct kruskal{
     std::vector<Edge> mst;
     int vertexes;

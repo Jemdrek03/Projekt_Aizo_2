@@ -16,5 +16,4 @@ add_executable(Projekt_Aizo_2 Projekt_main.cpp
         Adjacency_List.h
         Incidence_Matrix.h
         Show_Menu.h
-        Testing.h
-        dane_mst1.txt)
+        Testing.h)

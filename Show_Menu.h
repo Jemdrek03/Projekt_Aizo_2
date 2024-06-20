@@ -18,6 +18,7 @@ public:
 
         int which = -1;
 
+        //Wybor opcji wyswietlenia grafu
         while( which != 4 ) {
             std::cout << "1. Wyswietlanie ogolnych informajii o grafie " << std::endl;
             std::cout << "2. Wyswietlenie listy poprzednikow " << std::endl;

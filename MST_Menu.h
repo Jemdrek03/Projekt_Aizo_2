@@ -21,6 +21,7 @@ public:
 
         int ktory = -1;
 
+        // Wybor algorytmu MST
         while( ktory != 3 ) {
             std::cout << "1. Algorytm Prima " << std::endl;
             std::cout << "2. Algorytm Kruskala " << std::endl;

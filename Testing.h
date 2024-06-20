@@ -17,14 +17,16 @@ class Testing{
 public:
     static void start_Testing()
     {
+        //Przygotowanie pliku wynikowego
         std::ofstream plikWyjsciowy("correct_results.txt");
         Dane result;
+        //7 roznych wielkosci dla liczby wierzcholkow grafu
         int* size = new int[7] {25, 50, 75, 100, 125, 150, 175};
 
         plikWyjsciowy<<"Rozpoczynam pomiar czasu: "<<std::endl;
 
         //Dla Dijkstra
-        plikWyjsciowy<<"Dijkstra dla sas"<<std::endl;
+        plikWyjsciowy<<"Dijkstra dla listy sasiedztwa"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -36,7 +38,7 @@ public:
         }
 
         //Dla Dijkstra
-        plikWyjsciowy<<"Dijkstra dla mac"<<std::endl;
+        plikWyjsciowy<<"Dijkstra dla macierzy incydecji"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -48,7 +50,7 @@ public:
         }
 
         //Dla Forda
-        plikWyjsciowy<<"Ford-Bellman dla sas"<<std::endl;
+        plikWyjsciowy<<"Ford-Bellman dla listy sasiedztwa"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -60,7 +62,7 @@ public:
         }
 
         //Dla Forda
-        plikWyjsciowy<<"Ford-Bellman dla mac"<<std::endl;
+        plikWyjsciowy<<"Ford-Bellman dla macierzy incydencji"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -72,7 +74,7 @@ public:
         }
 
         //Dla Prima
-        plikWyjsciowy<<"Prima dla mac"<<std::endl;
+        plikWyjsciowy<<"Prima dla listy sasiedztwa"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -84,7 +86,7 @@ public:
         }
 
         //Dla Prima
-        plikWyjsciowy<<"Prima dla inc"<<std::endl;
+        plikWyjsciowy<<"Prima dla macierzy incydencji"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -96,7 +98,7 @@ public:
         }
 
         //Dla Kruskala
-        plikWyjsciowy<<"Kruskal dla mac"<<std::endl;
+        plikWyjsciowy<<"Kruskal dla listy sasiedztwa"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -108,7 +110,7 @@ public:
         }
 
         //Dla Kruskala
-        plikWyjsciowy<<"Kruskal dla inc"<<std::endl;
+        plikWyjsciowy<<"Kruskal dla macierzy incydencji"<<std::endl;
         for(int i = 0; i < 7; i++ )
         {
             int siz = size[i];
@@ -118,11 +120,6 @@ public:
             plikWyjsciowy<<"gestosc: "<<0.99<<" wynik: "<<kruInc(siz,0.99)<<std::endl;
 
         }
-
-        Incidence_Matrix im = toIncidenceMatrix(result);
-        Incidence_Matrix im1 = toIncidenceMatrix1(result);
-        Adjacency_List al = toAdjacencyList(result);
-        Adjacency_List al1 = toAdjacencyList1(result);
 
     }
 
@@ -141,22 +138,35 @@ public:
     static float dijkAdj(int size, float density)
     {
         Dane result;
+        //Inicjalizacja zmiennych potrzebnych do pomiaru czasu
         float suma = 0.0, czas = 0.0;
         for( int j = 0; j < 100; j++)
         {
+            //utworzenie podstawowej struktury grafu
             result = generateData(size, density);
+            //Utworzenie losty sasiedztwa
             Adjacency_List al = toAdjacencyList(result);
+            //Poczatek pomiaru czasu
             auto t1 = std::chrono::high_resolution_clock::now();
+            //Uruchomienie algorytmu
             Shortest_Path_Algorythms::dijkstraAdjacencyList(al, generate(size), generate(size) );
+            //Zakonczenie pomiaru czasu
             auto t2 = std::chrono::high_resolution_clock::now();
+            //Obliczenie czasu potrzebnego na wykonanie algorytmu
             auto ms_int = std::chrono::duration<float, std::micro >(t2 - t1);
             czas = ms_int.count();
+            //Dodanie czasu czastkowego do sumy
             suma += czas;
         }
+        //Obliczenie sredniej
         suma /= 100.0;
         return suma;
     }
 
+    //Dla reszty algorytmow schemat dzialanie jest takk sam jak wyzej, jedyne co moze ulec zmianie to:
+    //1. utworzenie innej struktury danych (lista sasiedztwa/macierz incydencji dla grafow skierowanych i nieskierowanych
+    //2. Uruchamianie innego algorytmu
+    //Reszta rzeczy pozostaje bez zmian
     static float dijkInc(int size, float density)
     {
         Dane result;
@@ -176,6 +186,7 @@ public:
         return suma;
     }
 
+
     static float fordAdj(int size, float density)
     {
         Dane result;
@@ -194,6 +205,7 @@ public:
         suma /= 100.0;
         return suma;
     }
+
 
     static float fordInc(int size, float density)
     {
@@ -234,6 +246,8 @@ public:
         suma /= 100.0;
         return suma;
     }
+
+
     static float primInc(int size, float density)
     {
         Dane result;
@@ -252,6 +266,8 @@ public:
         suma /= 100.0;
         return suma;
     }
+
+
     static float kruAdj(int size, float density)
     {
         Dane result;
@@ -270,6 +286,8 @@ public:
         suma /= 100.0;
         return suma;
     }
+
+
     static float kruInc(int size, float density)
     {
         Dane result;
@@ -288,11 +306,6 @@ public:
         suma /= 100.0;
         return suma;
     }
-
-
-
-
-
 };
 
 

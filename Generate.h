@@ -5,10 +5,14 @@
 #include <ctime>
 #include <vector>
 #include <algorithm>
+#include <__random/random_device.h>
+#include <random>
 #include "File_Reading.h"
 
 Dane generateData(int vertexes, float density) {
     Dane result;
+    std::random_device rd;
+    std::mt19937 g(rd());
     result.vertexes = vertexes;
     int maxEdges = vertexes * (vertexes - 1) / 2; // Maksymalna liczba krawędzi w grafie nieskierowanym
     int edges = static_cast<int>(maxEdges * density); // Liczba krawędzi na podstawie gęstości
@@ -48,7 +52,9 @@ Dane generateData(int vertexes, float density) {
     for (int i = 0; i < edges; ++i) {
         indices[i] = i;
     }
-    std::random_shuffle(indices.begin(), indices.end());
+    std::shuffle(indices.begin(), indices.end(), g);
+   // std::random_shuffle(indices.begin(), indices.end());
+
 
     int* finalFirst = new int[edges];
     int* finalSecond = new int[edges];
